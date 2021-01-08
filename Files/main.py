@@ -60,15 +60,16 @@ while True:
 		succesful = open_app(app)
 
 		if not succesful:
-			speak('Sorry, this app cannot be opened')
+			speak('Sorry, this app could not be opened')
 
-		time.sleep(3)
+		else:
+			time.sleep(3)
 
 	elif 'open' in reply:
 		site = reply.split("open ", 1)[1]
 		speak('Opening ' + site + ', sir!')
 
-		open_site("https://"+site+".com/")
+		open_site("https://"+site+".com")
 
 		time.sleep(3)
 
@@ -83,13 +84,18 @@ while True:
 	elif 'about' in reply:
 		query = reply.split("about ", 1)[1]
 
-		answer = wiki(query)
+		try:
+			answer = api_search(reply)
+			speak(answer)
 
-		if answer != False:
-			speak('(From Wikipedia) ' + answer)
+		except:
+			answer = wiki(query)
 
-		else:
-			speak("Sorry, sir, I could not get any information about that")
+			if answer != False:
+				speak('(From Wikipedia) ' + answer)
+
+			else:
+				speak("Sorry, sir, I could not get any information about that")
 
 	elif 'date' in reply:
 		date = get_date()
@@ -103,6 +109,11 @@ while True:
 
 	else:
 		if reply != "":
-			speak('Sorry, sir! I could not find anything relevant to that')
+			try:
+				answer = api_search(reply)
+				speak(answer)
+
+			except:
+				speak('Sorry, sir! I could not find anything relevant to that')
 			
 	speak("Do you have any other command, sir?")
