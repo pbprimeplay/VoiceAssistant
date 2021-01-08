@@ -32,10 +32,6 @@ def greeting():
 	if currentHour >= 16 and currentHour != 0:
 		return 'Good evening'
 
-def get_date():
-	today = datetime.date.today()
-	return today.strftime("%A, %B %d, %Y")
-
 def open_app(appname):
 	if 'google chrome' in appname.lower():
 		subprocess.call(r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
