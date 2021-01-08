@@ -1,4 +1,10 @@
-import webbrowser, wikipedia, datetime, subprocess
+import webbrowser, wikipedia, datetime, subprocess, wolframalpha
+
+client = wolframalpha.Client('Your API-Client ID')
+
+def api_search(response):
+	res = client.query(response)
+	return next(res.results).text
 
 def open_site(site_name):
 	webbrowser.open(site_name)
@@ -46,7 +52,7 @@ def open_app(appname):
 	elif 'word' in appname.lower():
 		subprocess.call(r'C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE')
 		return True
-	
+
 	elif 'notepad' in appname.lower():
 		subprocess.Popen(r'notepad.exe')
 		return True
