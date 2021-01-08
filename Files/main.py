@@ -97,10 +97,6 @@ while True:
 			else:
 				speak("Sorry, sir, I could not get any information about that")
 
-	elif 'date' in reply:
-		date = get_date()
-		speak('Today is ' + date)
-
 	elif 'note' in reply:
 		speak('What should I note?')
 		newQ = listen()
